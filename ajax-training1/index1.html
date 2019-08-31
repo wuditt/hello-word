@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    姓名:<input type="text" name="person" id="">
+    年龄:<input type="text" name="person" id="">
+    <input type="submit" name="person" id="">
+    <input type="submit" name="" id="" value="获取列表">
+    <script src="./ajax1.js"></script>
+        <script>
+        var input = document.getElementsByTagName('input');
+        input[2].onclick = function (){
+            console.log('点击');
+            var input1 = input[0].value;
+            var input2 = input[1].value;
+            var str = '';
+            str = "username="+input1+"&age="+input2;
+            console.log('POST','mySecondPhP.php',hyP,str,true);
+            ajax('POST','mySecondPhP.php',hyP,str,true);
+        }
+        input[3].onclick = function(){
+            var oUl = document.createElement('ul');
+            document.body.appendChild(oUl);
+            ajax('GET','myFirstPhP.php',hyG,'time=1234',true);
+        }
+        function hyP(data){
+            console.log('ok');
+        console.log(data);
+        }
+        function hyG(data){
+            var str = '';
+            var oUl = document.createElement('ul');
+            document.body.appendChild(oUl);
+            data = JSON.parse(data);
+            data.forEach(function(ele,index){
+            str   += '<li>标题:'+ele.title+'时间:'+ele.name+'</li>';
+        });
+        oUl.innerHTML = str;
+        }
+        </script>
+</body>
+</html>
